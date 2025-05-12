@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int indexOf (char sentence[], char words[]) 
+{
+    int sentenceLenght = 0;
+    int wordLenght = 0;
+    
+    while (sentence[sentenceLenght] != '\0') {
+        sentenceLenght++;
+    }
+    
+    while (words[wordLenght] != '\0') {
+        wordLenght++;
+    }
+    
+    for (int i = 0; i <= sentenceLenght - wordLenght; i++) {
+        int a = 1; 
+        
+        for (int j = 0; j < wordLenght; j++) {
+            if (sentence[i + j] != words[j]) {
+                a = 0;
+                break;
+            }
+        }
+        
+        if (a) {
+            return i;
+        }
+    }
+  
+    return -1; 
+}
+
+int main() 
+{
+    char sentence[] = "The birds are singing outside my window";
+    char words[] = "birds";
+    int position = indexOf(sentence, words);
+  
+    if (position != -1) {
+        printf("Слово \"%s\" найдено на позиции %d\n", words, position);
+    } 
+    else {
+        printf("Слово \"%s\" не найдено\n", words);
+    }
+
+    return 0;
+}
